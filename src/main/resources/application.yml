@@ -1,0 +1,26 @@
+spring:
+  application:
+    name: user-management
+  datasource:
+    url: jdbc:postgresql://localhost:5434/user_management
+    username: postgres
+    password: Admin#123
+    driver-class-name: org.postgresql.Driver
+  flyway:
+    enabled: true
+    baseline-on-migrate: true
+    locations: classpath:db/migration
+
+mybatis:
+  mapper-locations: classpath:mapper/*.xml
+  type-aliases-package: com.chokchey.flywaydemo.entity
+  configuration:
+    map-underscore-to-camel-case: true
+    log-impl: org.apache.ibatis.logging.stdout.StdOutImpl
+
+server:
+  port: 8080
+
+logging:
+  level:
+    com.chokchey.flywaydemo: DEBUG
