@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="UTF-8" ?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
-<mapper namespace="com.chokchey.flywaydemo.mapper.UserMapper">
+<mapper namespace="com.example.flywaydemo.feature.user.mapper.UserMapper">
 
-    <resultMap id="UserResultMap" type="com.chokchey.flywaydemo.entity.User">
+    <resultMap id="UserResultMap" type="com.example.flywaydemo.feature.user.model.User">
         <id property="id" column="id"/>
         <result property="username" column="username"/>
         <result property="email" column="email"/>
@@ -38,6 +38,15 @@
         SELECT * FROM users
         WHERE username ILIKE CONCAT('%', #{username}, '%')
         ORDER BY id DESC
+    </select>
+
+    <select id="countAll" resultType="long">
+        SELECT COUNT(*) FROM users
+    </select>
+
+    <select id="findAllWithPagination" resultMap="UserResultMap">
+        SELECT * FROM users ORDER BY id DESC
+        LIMIT #{limit} OFFSET #{offset}
     </select>
 
 </mapper>
